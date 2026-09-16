@@ -1,18 +1,41 @@
-# Meme Selector GNOME Extension
+# Meme Selector
 
-Adds a GNOME top-bar meme picker. Configure local folders in the extension
-preferences, search by filename, and copy a selected image to the clipboard.
+Browse meme images from selected folders in the GNOME top bar, search by file
+name, and copy a meme to the clipboard.
 
-Online search is optional and disabled by default. Imgflip works without an API
-key; GIPHY requires a user-provided API key. Downloaded online results are
-saved to `~/Pictures/Memes` when requested.
+## Features
 
-This release targets GNOME Shell 50. Clipboard access occurs only for the
-user-requested copy action, and is declared for GNOME Extensions review.
+- Scan one or more local folders recursively.
+- Search local `.jpg`, `.jpeg`, and `.png` files.
+- Optionally search Imgflip or GIPHY online.
+- Save online results to `~/Pictures/Memes`.
+- Configure folders, provider, result limits, and GIPHY settings in Preferences.
 
-Install the release ZIP from the `dist/` directory with:
+Online search is disabled by default. Imgflip needs no API key; GIPHY requires
+a GIPHY API key entered in Preferences. Clipboard access is used only when you
+choose to copy a meme.
 
-```sh
-gnome-extensions install --force dist/meme-selector@willdo.shell-extension.zip
+## Install
+
+This release supports GNOME Shell 50.
+
+Install the package from `dist/`:
+
+```bash
+gnome-extensions install --force \
+  dist/meme-selector@willdo.shell-extension.zip
 gnome-extensions enable meme-selector@willdo
 ```
+
+Open Preferences to add your meme folders:
+
+```bash
+gnome-extensions prefs meme-selector@willdo
+```
+
+On Wayland, log out and back in if GNOME Shell does not discover the extension
+immediately.
+
+## License
+
+GPL-3.0-or-later. See [LICENSE](LICENSE).
