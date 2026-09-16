@@ -1,0 +1,46 @@
+.meme-selector-hbox {
+  transition: background-color 150ms ease-in-out;
+}
+
+.meme-selector-search-item {
+  padding: 8px 12px;
+}
+
+.meme-selector-search-entry {
+  min-width: 18em;
+}
+
+.meme-selector-menu-section {
+  max-height: 450px;
+}
+
+.meme-selector-file-item {
+  spacing: 10px;
+}
+
+.meme-selector-save-button {
+  border-radius: 6px;
+  padding: 6px;
+}
+
+.meme-selector-menu-icon {
+  width: 1em;
+  height: 1em;
+  margin-right: .5em;
+}
+
+.meme-selector-thumbnail {
+  border-radius: 6px;
+}
+
+.meme-selector-labels {
+  spacing: 2px;
+}
+
+.meme-selector-title {
+  font-weight: 600;
+}
+
+.meme-selector-subtitle {
+  color: #9a9a9a;
+}

@@ -1,0 +1,10 @@
+{
+  "uuid": "meme-selector@willdo",
+  "name": "Meme Selector",
+  "description": "Search local meme folders or optional GIPHY results from the GNOME top bar and copy selected memes to the clipboard.",
+  "shell-version": [
+    "50"
+  ],
+  "url": "https://github.com/vquand/gnome-extension-meme-selector",
+  "settings-schema": "org.gnome.shell.extensions.meme-selector"
+}

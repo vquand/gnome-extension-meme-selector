@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.meme-selector" path="/org/gnome/shell/extensions/meme-selector/">
+    <key name="meme-folders" type="as">
+      <default>[]</default>
+      <summary>Meme folders</summary>
+      <description>Folders scanned recursively for JPG, JPEG, and PNG meme images.</description>
+    </key>
+    <key name="online-search-enabled" type="b">
+      <default>false</default>
+      <summary>Enable online search</summary>
+      <description>Whether Ctrl+Enter searches configured online meme providers.</description>
+    </key>
+    <key name="online-provider" type="s">
+      <default>'imgflip'</default>
+      <summary>Online provider</summary>
+      <description>Online meme provider to use. Supported values are imgflip and giphy.</description>
+    </key>
+    <key name="giphy-api-key" type="s">
+      <default>''</default>
+      <summary>GIPHY API key</summary>
+      <description>GIPHY API key used for online GIF search.</description>
+    </key>
+    <key name="online-result-limit" type="i">
+      <range min="1" max="25"/>
+      <default>12</default>
+      <summary>Online result limit</summary>
+      <description>Maximum number of online results to show.</description>
+    </key>
+    <key name="giphy-rating" type="s">
+      <default>'g'</default>
+      <summary>GIPHY rating</summary>
+      <description>Maximum GIPHY content rating to request. Supported values are g, pg, pg-13, and r.</description>
+    </key>
+  </schema>
+</schemalist>
