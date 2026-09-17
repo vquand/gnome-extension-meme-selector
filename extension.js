@@ -3,6 +3,7 @@ import GdkPixbuf from 'gi://GdkPixbuf';
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
+import Pango from 'gi://Pango';
 import Soup from 'gi://Soup';
 import St from 'gi://St';
 
@@ -40,6 +41,29 @@ function fileExtension(name) {
 function fileTitle(name) {
     const index = name.lastIndexOf('.');
     return index === -1 ? name : name.slice(0, index);
+}
+
+function createEllipsizedLabel(text, styleClass) {
+    const label = new St.Label({
+        text,
+        x_expand: true,
+        style_class: styleClass,
+    });
+
+    label.clutter_text.ellipsize = Pango.EllipsizeMode.END;
+    return label;
+}
+
+function setTitleExpanded(label, expanded) {
+    label.clutter_text.ellipsize = expanded
+        ? Pango.EllipsizeMode.NONE
+        : Pango.EllipsizeMode.END;
+    label.clutter_text.line_wrap = expanded;
+}
+
+function bindTitleHover(item, label) {
+    label.clutter_text.line_wrap_mode = Pango.WrapMode.WORD_CHAR;
+    item.connect('notify::hover', () => setTitleExpanded(label, item.hover));
 }
 
 function loadImageAsPngBytes(path) {
@@ -388,16 +412,13 @@ class MemeFileMenuItem extends PopupMenu.PopupBaseMenuItem {
             style_class: 'meme-selector-labels',
         });
 
-        labels.add_child(new St.Label({
-            text: meme.title,
-            x_expand: true,
-            style_class: 'meme-selector-title',
-        }));
-        labels.add_child(new St.Label({
-            text: GLib.path_get_basename(meme.path),
-            x_expand: true,
-            style_class: 'meme-selector-subtitle',
-        }));
+        const title = createEllipsizedLabel(meme.title, 'meme-selector-title');
+        bindTitleHover(this, title);
+        labels.add_child(title);
+        labels.add_child(createEllipsizedLabel(
+            GLib.path_get_basename(meme.path),
+            'meme-selector-subtitle'
+        ));
 
         this.add_child(icon);
         this.add_child(labels);
@@ -424,16 +445,10 @@ class MemeOnlineMenuItem extends PopupMenu.PopupBaseMenuItem {
             style_class: 'meme-selector-labels',
         });
 
-        labels.add_child(new St.Label({
-            text: meme.title,
-            x_expand: true,
-            style_class: 'meme-selector-title',
-        }));
-        labels.add_child(new St.Label({
-            text: meme.source,
-            x_expand: true,
-            style_class: 'meme-selector-subtitle',
-        }));
+        const title = createEllipsizedLabel(meme.title, 'meme-selector-title');
+        bindTitleHover(this, title);
+        labels.add_child(title);
+        labels.add_child(createEllipsizedLabel(meme.source, 'meme-selector-subtitle'));
 
         this.add_child(labels);
 
@@ -473,6 +488,7 @@ class MemeSelectorIndicator extends PanelMenu.Button {
         this._focusIdleId = 0;
         this._searchText = '';
         this._items = [];
+        this.menu.box.add_style_class_name('meme-selector-menu');
 
         this._hbox = new St.BoxLayout({
             style_class: 'panel-status-menu-box meme-selector-hbox',
@@ -507,7 +523,7 @@ class MemeSelectorIndicator extends PanelMenu.Button {
         this._scrollViewMenuSection = new PopupMenu.PopupMenuSection();
         this._scrollView = new St.ScrollView({
             style_class: 'meme-selector-menu-section',
-            overlay_scrollbars: true,
+            overlay_scrollbars: false,
         });
         this._scrollView.add_child(this._section.actor);
         this._scrollViewMenuSection.actor.add_child(this._scrollView);

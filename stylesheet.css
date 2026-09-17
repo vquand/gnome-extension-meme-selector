@@ -2,20 +2,35 @@
   transition: background-color 150ms ease-in-out;
 }
 
+/* 80% of the local meme titles are 33 characters or shorter; this leaves a
+ * 20-25% name buffer while reserving room for thumbnails and controls. */
+.meme-selector-menu {
+  width: 38em;
+  min-width: 38em;
+  max-width: 38em;
+}
+
 .meme-selector-search-item {
   padding: 8px 12px;
+  min-width: 0;
+  width: 100%;
 }
 
 .meme-selector-search-entry {
-  min-width: 18em;
+  min-width: 0;
+  width: 100%;
 }
 
 .meme-selector-menu-section {
   max-height: 450px;
+  min-width: 0;
+  width: 100%;
 }
 
 .meme-selector-file-item {
+  min-width: 0;
   spacing: 10px;
+  width: 100%;
 }
 
 .meme-selector-save-button {
@@ -34,7 +49,13 @@
 }
 
 .meme-selector-labels {
+  min-width: 0;
   spacing: 2px;
+}
+
+.meme-selector-title,
+.meme-selector-subtitle {
+  min-width: 0;
 }
 
 .meme-selector-title {
