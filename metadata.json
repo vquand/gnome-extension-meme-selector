@@ -2,6 +2,7 @@
   "uuid": "meme-selector@willdo",
   "name": "Meme Selector",
   "description": "Search local meme folders or optional GIPHY results from the GNOME top bar and copy selected memes to the clipboard.",
+  "version": 1,
   "shell-version": [
     "50"
   ],

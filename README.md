@@ -1,5 +1,7 @@
 # Meme Selector
 
+Version 1.0.0 is the first published release and supports GNOME Shell 50.
+
 Browse meme images from selected folders in the GNOME top bar, search by file
 name, and copy a meme to the clipboard.
 
@@ -17,7 +19,8 @@ choose to copy a meme.
 
 ## Install
 
-This release supports GNOME Shell 50.
+This release supports GNOME Shell 50. See [CHANGELOG.md](CHANGELOG.md) for
+the release notes.
 
 Install the package from `dist/`:
 
